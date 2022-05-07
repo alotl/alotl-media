@@ -4,6 +4,7 @@
   "description": "Centralized platform for sharing recommendations and ratings for all media types with friends",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon server/server.js",
     "build": "webpack",
     "dev": "webpack serve",
     "test": "echo \"Error: no test specified\" && exit 1"
