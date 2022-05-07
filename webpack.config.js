@@ -47,6 +47,7 @@ module.exports = {
     // static: {
     //   directory: 'index.html',
     // },
+    historyApiFallback: true,
     port: 8080,
     proxy: {
       '/api/**': {
