@@ -3,14 +3,12 @@ const db = require('./model.js');
 const userController = {};
 
 userController.createUser = (req, res, next) => {
-  //   const newUser = req.body;
-  // console.log(req.body);
-  const newUser = 'namename';
+  const newUser = req.body;
 
-  console.log('newUser: ', req);
+  console.log('newUser: ', req.body);
   const createQuery =
     `INSERT INTO "public"."User" ("username", "password")
-    VALUES ('${newUser}', '${newUser}')`;
+    VALUES ('${newUser.username}', '${newUser.password}')`;
 
   db.query(createQuery)
     .then(data => {
