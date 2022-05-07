@@ -3,7 +3,8 @@ Centralized platform for sharing recommendations and ratings for all media types
 
 ### User Profile Page
 
-![image](https://user-images.githubusercontent.com/11655553/167234558-861a1647-f35c-441c-bc81-32a6c7a2cbad.png)
+![image](https://user-images.githubusercontent.com/11655553/167235402-3db055cd-c0d9-4783-bb2a-65bb4c0d340c.png)
+
 
 
 ### Create Db
