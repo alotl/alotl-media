@@ -4,6 +4,8 @@
   "description": "Centralized platform for sharing recommendations and ratings for all media types with friends",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
+    "dev": "webpack serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +20,7 @@
   },
   "homepage": "https://github.com/alotl/alotl-media#readme",
   "dependencies": {
+    "@popperjs/core": "^2.11.5",
     "bootstrap": "^5.1.3",
     "express": "^4.18.1",
     "node-postgres": "^0.6.2",
