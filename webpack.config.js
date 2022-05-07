@@ -27,7 +27,13 @@ module.exports = {
           'postcss-loader',
           'sass-loader'
         ]
-      }
+      },
+      {
+        test: /\.js$/,
+        enforce: "pre",
+        use: ["source-map-loader"],
+      },
+      
     ]
   },
   mode: 'development',
