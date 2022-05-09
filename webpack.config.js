@@ -27,7 +27,13 @@ module.exports = {
           'postcss-loader',
           'sass-loader'
         ]
-      }
+      },
+      {
+        test: /\.js$/,
+        enforce: "pre",
+        use: ["source-map-loader"],
+      },
+      
     ]
   },
   mode: 'development',
@@ -41,6 +47,7 @@ module.exports = {
     // static: {
     //   directory: 'index.html',
     // },
+    historyApiFallback: true,
     port: 8080,
     proxy: {
       '/api/**': {
