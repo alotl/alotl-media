@@ -1,10 +1,10 @@
 const express = require('express');
 const path = require('path');
-const userController = require('./userController')
+const signupController = require('./signupController')
 
 const router = express.Router();
 
-router.post('/', userController.createUser, (req, res) => {
+router.post('/', signupController.createUser, (req, res) => {
   return res.sendStatus(200)
 })
 
