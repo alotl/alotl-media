@@ -4,6 +4,13 @@ import MediaCard from './MediaCard'
 
 export default function Home(props) {
   const[reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    fetch('profile')
+      .then(res => res.json())
+      .then(body => setReviews(body))
+  })
+  
   function handleNewReview(review) {
     setReviews([...reviews, review]);
   }
@@ -11,11 +18,7 @@ export default function Home(props) {
     return <MediaCard review={el} />
   })
 
-  useEffect(() => {
-    fetch('profile')
-      .then(res => res.json())
-      .then(body => setReviews(body))
-  })
+
 
   return(
     <div id='reviews-container' className='container'>
