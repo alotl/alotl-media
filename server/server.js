@@ -3,7 +3,9 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const apiRouter = require('./api.js');
+const userApiRouter = require('./userApi.js');
+const mediaApiRouter = require('./mediaApi.js');
+const signupApiRouter = require('./signupApi.js');
 
 const webpack = require('webpack');
 const config = require('../webpack.config');
@@ -19,7 +21,11 @@ app.use(express.static(__dirname + '/public'));
 //   res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
 // });
 
-app.use('/login', apiRouter);
+app.use('/login', userApiRouter);
+
+app.use('/signup', signupApiRouter);
+
+app.use('/media', mediaApiRouter);
 
 app.get('/home', (req, res) => {
   console.log('made get html request');
