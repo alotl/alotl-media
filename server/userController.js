@@ -18,7 +18,7 @@ userController.createUser = (req, res, next) => {
     })
     .catch(err => {
       const errorObj = {
-        log: 'error in createUser',
+        log: 'error in userController.createUser',
         message: `server error ${err}`
       };
       return next(errorObj);
@@ -29,17 +29,20 @@ userController.findUser = (req, res, next) => {
   const newUser = req.body;
   console.log(newUser);
   const findQuery =
-    `SELECT * FROM "public"."User"`;
+    // `SELECT * FROM "public"."User"`;
+    // `SELECT * FROM "public"."User" WHERE username = 'antonio'`
+    `SELECT * FROM "public"."User" WHERE username = '${newUser.username}' AND password = '${newUser.password}'`
+
 
   db.query(findQuery)
     .then(data => {
       res.locals.user = data.rows;
-      console.log(res.locals.user);
+      // console.log(res.locals.user);
       return next();
     })
     .catch(err => {
       const errorObj = {
-        log: 'error in findUser',
+        log: 'error in userController.findUser',
         message: `server error ${err} `
       };
       return next(errorObj);
