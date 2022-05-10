@@ -1,0 +1,53 @@
+{
+  "name": "alotl-media",
+  "version": "1.0.0",
+  "description": "Centralized platform for sharing recommendations and ratings for all media types with friends",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/server.js",
+    "build": "webpack",
+    "dev": "webpack serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alotl/alotl-media.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alotl/alotl-media/issues"
+  },
+  "homepage": "https://github.com/alotl/alotl-media#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.11.5",
+    "bcrypt": "^5.0.1",
+    "bootstrap": "^5.1.3",
+    "express": "^4.18.1",
+    "node-postgres": "^0.6.2",
+    "pg": "^8.7.3",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-react": "^7.16.7",
+    "autoprefixer": "^10.4.7",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "nodemon": "^2.0.16",
+    "postcss-loader": "^6.2.1",
+    "sass": "^1.51.0",
+    "sass-loader": "^12.6.0",
+    "source-map-loader": "^3.0.1",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  }
+}

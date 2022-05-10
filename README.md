@@ -52,3 +52,17 @@ CREATE TABLE "public.reviews" (
 ALTER TABLE "reviews" ADD CONSTRAINT "reviews_fk0" FOREIGN KEY ("user_id") REFERENCES "User"("_id");
 ALTER TABLE "reviews" ADD CONSTRAINT "reviews_fk1" FOREIGN KEY ("media_id") REFERENCES "Media"("_id");
 ```
+### LOGIN API
+###### Request
+```
+{
+  username: 'username'
+  password: 'password'
+}
+```
+
+###### Response
+```
+Status 200 // Means Good
+Status 400 // Means Error
+```
