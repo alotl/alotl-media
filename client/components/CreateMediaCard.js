@@ -28,6 +28,9 @@ export default function(props) {
     fetch('media', {
       method: 'POST',
       body: JSON.stringify(newReview),
+      headers: {
+        'Content-Type': 'application/json'
+      }
     })
       .then((res) => {
         if (true) {

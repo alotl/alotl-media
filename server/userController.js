@@ -6,7 +6,7 @@ const userController = {};
 
 userController.findUser = (req, res, next) => {
   const currentUser = req.body;
-  console.log(currentUser);
+  console.log('req', req);
   const findQuery =
     // `SELECT * FROM "public"."User"`;
     // `SELECT * FROM "public"."User" WHERE username = 'antonio'`

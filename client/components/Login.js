@@ -31,11 +31,15 @@ export default function Login(props) {
     //   navigate(path);
     // }
 
-    fetch('login', {
+    fetch('/login', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({ username, password }),
     })
       .then((res) => {
+        console.log(res);
         if (res.status === 200) {
           navigate('/home');
           res.json;

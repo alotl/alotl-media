@@ -12,7 +12,7 @@ export default function Home(props) {
   })
   
   function handleNewReview(review) {
-    setReviews([...reviews, review]);
+    setReviews([review, ...reviews]);
   }
   const mediaCards = reviews.map(el => {
     return <MediaCard review={el} />
