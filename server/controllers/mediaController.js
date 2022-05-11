@@ -1,4 +1,4 @@
-const db = require('./model.js');
+const db = require('../models/model.js');
 
 const mediaController = {};
 

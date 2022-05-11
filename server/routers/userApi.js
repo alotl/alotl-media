@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 // const { router } = require('./server');
-const userController = require('./userController')
+const userController = require('../controllers/userController')
 
 const router = express.Router();
 
