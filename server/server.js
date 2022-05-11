@@ -1,6 +1,6 @@
 const express = require('express');
 const path = require('path');
-const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,25 +18,20 @@ const compiler = webpack(config);
 */
 app.use(express.json());
 app.use(express.urlencoded());
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.use(express.static(path.resolve(__dirname, '../public')));
+app.use(express.static(path.resolve(__dirname, '../client')));
 
-app.use('/login', userApiRouter);
+// app.use('/login', userApiRouter);
 
+app.use('/api/signup', signupApiRouter);
 
-app.post('/signup', (req, res) => {
-  console.log(req.body);
-  console.log('hi')
-  res.status(200).json({hello:'hi :)'});
-});
+// app.use('/media', mediaApiRouter);
 
-// app.use('/signup', signupApiRouter);
-
-app.use('/media', mediaApiRouter);
-
-app.get('/home', (req, res) => {
-  res.status(200).sendFile(path.resolve(__dirname, '../public/index.html'));
+app.use("*", (req, res) => {
+  console.log('react will handle it')
+  res.sendFile(path.join(__dirname, '../public/build/index.html'));
 });
 
 
