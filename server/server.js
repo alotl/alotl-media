@@ -1,41 +1,44 @@
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const userApiRouter = require('./userApi.js');
-const mediaApiRouter = require('./mediaApi.js');
-const signupApiRouter = require('./signupApi.js');
+const userApiRouter = require('./routers/userApi.js');
+const mediaApiRouter = require('./routers/mediaApi.js');
+const signupApiRouter = require('./routers/signupApi.js');
 
 const webpack = require('webpack');
 const config = require('../webpack.config');
 const compiler = webpack(config);
 
+/**
+* Automatically parse urlencoded body content and form data from incoming requests and place it
+* in req.body
+*/
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded());
+// app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static(__dirname + '/public'));
-
-// app.get('/client', (req, res) => {
-//   console.log('made get request');
-//   res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
-// });
+app.use(express.static(path.resolve(__dirname, '../public')));
 
 app.use('/login', userApiRouter);
 
-app.use('/signup', signupApiRouter);
+
+app.post('/signup', (req, res) => {
+  console.log(req.body);
+  console.log('hi')
+  res.status(200).json({hello:'hi :)'});
+});
+
+// app.use('/signup', signupApiRouter);
 
 app.use('/media', mediaApiRouter);
 
 app.get('/home', (req, res) => {
-  console.log('made get html request');
   res.status(200).sendFile(path.resolve(__dirname, '../public/index.html'));
 });
 
-app.get('/bundle.js', (req, res) => {
-  console.log('made get bundle request');
-  res.status(200).sendFile(path.resolve(__dirname, '../public/bundle.js'));
-});
 
 app.use((err, req, res, next) => {
   const defaultErr = {
