@@ -7,36 +7,37 @@ export default function Login(props) {
 
   const navigate = useNavigate();
 
-  console.log('test', username);
-  console.log('password', password);
-
-  function handleChangeUser(e) {
-    const { value } = e.target;
-    setUsername(value);
-  }
-
-  function handleChangePass(e) {
-    const { value } = e.target;
-    setPassword(value);
-  }
-
   function handleLogin() {
-    //send fetch req to /login
-    //check if status equal to 200, then redirect to the homepage
-    //otherwise, catch error alert invalid username or password
-
-    // let navigate = useNavigate();
-    // const routeChange = () =>{
-    //   let path = `newPath`;
-    //   navigate(path);
-    // }
-
     fetch('/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ username: 'newoneeee', password:'12345' }),
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          navigate('/home');
+          res.json;
+        } else {
+          alert('Wrong Username/Password Combo');
+          throw new Error('Wrong Username/Password Combo');
+        }
+      })
+      .then((body) => {
+        navigate('/home');
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleSignup() {
+    alert('SIGN - UP testing');
+    fetch('/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ username: 'newondaeeee', password:'12345' }),
     })
       .then((res) => {
         console.log(res);
@@ -54,10 +55,6 @@ export default function Login(props) {
         navigate('/home');
       })
       .catch((err) => console.log(err));
-  }
-
-  function handleSignup() {
-    alert('SIGNUP testing');
   }
 
   return (
