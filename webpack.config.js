@@ -10,28 +10,26 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+          },
+        },
       },
       {
-        test: /\.s?css$/i,
-        use: [
-          'style-loader', 
-          'css-loader', 
-          'postcss-loader',
-          'sass-loader'
-        ]
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.js$/,
-        enforce: "pre",
-        use: ["source-map-loader"],
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        use: ['file-loader'],
+      },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
       },
       
     ]
@@ -41,7 +39,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'client', 'index.html'),
     }),
-    // require('autoprefixer')
   ],
   devServer: {
     static: {
@@ -50,9 +47,9 @@ module.exports = {
     },
     port: 8080,
     // enable HMR on the devServer
-    hot: true,
-    // fallback to root for other urls
-    historyApiFallback: true,
+    // hot: true,
+    // // fallback to root for other urls
+    // historyApiFallback: true,
 
     proxy: {
       '*': { target: 'http://localhost:3000' },
