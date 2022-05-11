@@ -30,4 +30,19 @@ sessionController.createSession = (req, res, next) => {
   });
 };
 
+sessionController.removeSession = (req, res, next) => {
+  //set the session data to null in user table
+  console.log('removeSession fired', res.locals.ssid);
+
+
+
+};
+
+sessionController.verifySession = (req, res, next) => {
+  //verify if the session data is in user table
+  console.log('verifySession fired', res.locals.ssid);
+
+
+  return next();
+};
 module.exports = sessionController;

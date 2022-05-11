@@ -1,16 +1,28 @@
 const express = require('express');
 const path = require('path');
-// const { router } = require('./server');
 const userController = require('../controllers/userController')
-
+const sessionController = require('../controllers/sessionController')
+const cookieController = require('../controllers/cookieController')
 const router = express.Router();
 
-router.post('/', userController.findUser, (req, res) => {
-  // console.log('user: ', Array.isArray(res.locals.user), res.locals.user)
-  // if (res.locals.user[0] == undefined) return res.sendStatus(400);
-  console.log('Testing Inputs', res.locals.user)
-  if (res.locals.user[0] == undefined) return res.status(400).json('username and/or password are incorrect');
-  return res.status(200).json('login successful')
+
+router.post('/signup', userController.createUser, sessionController.createSession, cookieController.setCookie, (req, res) => {
+  return res.redirect('/');
+})
+
+
+router.post('/login', userController.verifyUser, sessionController.createSession, cookieController.setCookie, (req, res) => {
+  return res.redirect('/');
+})
+
+
+router.get('/logout', cookieController.getCookie, sessionController.removeSession, cookieController.clearCookie, (req, res) => {
+  return res.redirect('/');
+})
+
+
+router.get('/verifylogin', cookieController.getCookie, sessionController.verifySession, (req, res) => {
+  return res.status(200).json({username: 'someusername', loggedIn: true})
 })
 
 module.exports = router;

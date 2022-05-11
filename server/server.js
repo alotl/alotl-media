@@ -5,8 +5,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const userApiRouter = require('./routers/userApi.js');
-const mediaApiRouter = require('./routers/mediaApi.js');
-const signupApiRouter = require('./routers/signupApi.js');
+const reviewApiRouter = require('./routers/reviewApi.js');
 
 const webpack = require('webpack');
 const config = require('../webpack.config');
@@ -23,9 +22,12 @@ app.use(cookieParser());
 app.use(express.static(path.resolve(__dirname, '../public')));
 app.use(express.static(path.resolve(__dirname, '../client')));
 
-// app.use('/login', userApiRouter);
 
-app.use('/api/signup', signupApiRouter);
+app.use('/api/user', userApiRouter);
+app.use('/api/review', reviewApiRouter);
+
+
+//
 
 // app.use('/media', mediaApiRouter);
 

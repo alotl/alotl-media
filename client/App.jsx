@@ -16,7 +16,15 @@ class App extends React.Component {
       username: "",
       loggedIn: false
     };
+  }
 
+  componentDidMount(){
+    fetch('/api/user/verifylogin')
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      this.setState({data})
+    });
   }
 
   render() {

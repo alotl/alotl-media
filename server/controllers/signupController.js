@@ -22,7 +22,6 @@ signupController.createUser = (req, res, next) => {
       VALUES ('${userName}', '${hashedPassword}')`;
     db.query(query)
       .then(data => {
-        res.locals.user = data.rows;
         return next();
       })
       .catch(err => {
