@@ -6,7 +6,7 @@ class SignUp extends React.Component {
     return (
       <div className="usercred-box">
         <div className="usercred-title">ALOTL</div>
-        <form className="usercred-form" method="POST" action='/loginUser'>
+        <form className="usercred-form" method="POST" action='/api/user/login'>
           <input type="text" placeholder="username" name="username" id="username" required />
           <input type="password" placeholder="password" name="password" id="password" required />
           <input type="submit" value="Log in" />

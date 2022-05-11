@@ -8,4 +8,8 @@ router.post('/', mediaController.findMedia, mediaController.createMedia, mediaCo
   return res.status(200).json(res.locals.review)
 })
 
+
+
+
+
 module.exports = router;

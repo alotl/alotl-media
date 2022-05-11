@@ -25,7 +25,7 @@ export default function(props) {
         // Reset the From Values to there original Value. 
       // Else Log an Error
 
-    fetch('media', {
+    fetch('/api/createReview', {
       method: 'POST',
       body: JSON.stringify(newReview),
       headers: {
