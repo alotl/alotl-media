@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   entry: path.join(__dirname, 'client', 'index.js'),
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.resolve(__dirname, './public/build'),
     filename: 'bundle.js'
   },
   module: {
@@ -44,15 +44,19 @@ module.exports = {
     // require('autoprefixer')
   ],
   devServer: {
-    // static: {
-    //   directory: 'index.html',
-    // },
-    historyApiFallback: true,
+    static: {
+      publicPath: '/public',
+      directory: path.join(__dirname, './public'),
+    },
     port: 8080,
+    // enable HMR on the devServer
+    hot: true,
+    // fallback to root for other urls
+    historyApiFallback: true,
+
     proxy: {
-      '/**': {
-        target: 'http://localhost:3000'
-      }
+      '*': { target: 'http://localhost:3000' },
+      '/api': { target: 'http://localhost:3000' },
     }
   },
 }
