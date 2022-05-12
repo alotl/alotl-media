@@ -23,6 +23,19 @@ app.use(express.static(path.resolve(__dirname, '../public')));
 app.use(express.static(path.resolve(__dirname, '../client')));
 
 
+//temp
+app.get('/usertable', (req, res) => {
+  let db = require('./models/model.js');
+  const query =
+      `SELECT * FROM "public"."public.User"`;
+  db.query(query)
+    .then(data => {
+      console.log(data.rows)
+      res.status(200).json(data.rows)
+    })
+  // return res.redirect('/');usert
+})
+
 app.use('/api/user', userApiRouter);
 app.use('/api/review', reviewApiRouter);
 
