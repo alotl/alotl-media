@@ -10,7 +10,7 @@ const router = express.Router();
 // router.post('/', mediaController.findMedia, mediaController.createMedia, mediaController.findUser, mediaController.createReview, (req, res) => {
 //   return res.status(200).json(res.locals.review)
 // })
-
+// HOPE THIS WORKS
 // create router for create review (/api/review/createreview)
 router.post('/createreview', 
   cookieController.getCookie, 
