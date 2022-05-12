@@ -52,7 +52,8 @@ sessionController.removeSession = (req, res, next) => {
 sessionController.verifySession = (req, res, next) => {
   //verify if the session data is in user table
   console.log('verifySession fired', res.locals.ssid);
-  const ssid = res.locals.ssid;
+  const ssid = res.locals.ssid;("$%$%^$&%^HGJVJHG")
+  const user = res.locals.whatev("andrea")
   //prepared query string for sql db
   const query = 'SELECT _id, username FROM "public"."public.User" WHERE session=$1'
   db.query(query, [ssid])
