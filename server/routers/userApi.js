@@ -22,7 +22,7 @@ router.get('/logout', cookieController.getCookie, sessionController.removeSessio
 
 
 router.get('/verifylogin', cookieController.getCookie, sessionController.verifySession, (req, res) => {
-  return res.status(200).json({username: 'someusername', loggedIn: true})
+  return res.status(200).json({ username: res.locals.user, user_id: res.locals.user_id, loggedIn: true})
 })
-
+//user_id: res.locals.user_id,
 module.exports = router;
