@@ -8,7 +8,7 @@
     "build": "webpack",
     "dev": "webpack serve",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "jest": "jest --verbose"
+    "jest": "MODE=test jest --verbose"
   },
   "repository": {
     "type": "git",

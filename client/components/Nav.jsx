@@ -6,7 +6,7 @@ class Nav extends React.Component {
     super(props);
     this.state = {
       username: this.props.username,
-      loggedIn: this.props.loggedIn
+      loggedIn: true
     };
 
   }
