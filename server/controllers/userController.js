@@ -1,18 +1,35 @@
-const db = require('../models/model.js');
+let db = require('../models/model.js');
 const bcrypt = require('bcrypt');
 const userController = {};
 const SALT = 5; 
 
 
 
-userController.createUser = (req, res, next) => {
 
+
+userController.createUser = (req, res, next) => {
   const userName = req.body.username;
   const userPassword = req.body.password;
   const userPasswordConfirm = req.body.password2;
-  if(userPassword !== userPasswordConfirm) {
-    console.log('password confirmation did not match')
-    return next({message:'password confirmation did not match'});
+
+  const isInputValid = (userName, userPassword, userPasswordConfirm) => {
+    if (!userName || !userPassword || typeof userName !== 'string' || typeof userPassword !== 'string' || userPassword !== userPasswordConfirm) {
+      return false;
+    }
+    return true;
+  }
+
+  const inputValidationResult = isInputValid(userName, userPassword, userPasswordConfirm);
+  
+  if (process.env.MODE === 'test'){
+    db = require('../models/testmodel.js'); 
+    if (!inputValidationResult){
+      return new Error('username and password must be a string and defined');
+    }
+  } else {
+    if (!inputValidationResult){
+      return next({message:'Input is not valid, please try again.'});
+    }
   }
 
   bcrypt.hash(userPassword, SALT, function (err, hashedPassword) {
@@ -22,6 +39,10 @@ userController.createUser = (req, res, next) => {
       VALUES ('${userName}', '${hashedPassword}')`;
     db.query(query)
       .then(data => {
+        if (process.env.MODE === 'test') {
+          console.log('created')
+          return data;
+        }
         return next();
       })
       .catch(err => {
@@ -29,6 +50,7 @@ userController.createUser = (req, res, next) => {
           log: 'error in userController.createUser',
           message: `server error ${err}`
         };
+        if (process.env.MODE === 'test') return new Error('User was not created');
         return next(errorObj);
       })
   });
@@ -39,8 +61,17 @@ userController.verifyUser = (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   
+  if (process.env.MODE === 'test'){
+    db = require('../models/testmodel.js'); 
+  } else {
+
+  }
+
+  // if()
+  
   const query =
-    `SELECT password FROM "public"."public.User" WHERE username = '${username}'`
+    `SELECT password FROM "public"."public.User" WHERE username = '${username}'`;
+  
 
   db.query(query)
     .then(data => {
