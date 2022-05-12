@@ -22,8 +22,9 @@ cookieController.getCookie = (req, res, next) => {
 
 cookieController.clearCookie = (req, res, next) => {
   //clears the cookie 
+  res.clearCookie('ssid')
   console.log('clearCookie fired');
-
+  return next();
 };
 
 module.exports = cookieController;
