@@ -1,0 +1,159 @@
+
+body {
+  background-color: #cff7f4;
+  font-family: 'Rubik', sans-serif;
+  color:rgb(97, 97, 97)
+  /* font-family: 'Ubuntu', sans-serif; */
+}
+
+
+
+/* * * * * * * * * * * * *
+            header
+ * * * * * * * * * * * * */
+.nav-container {
+  margin: 20px auto;
+  height: 100px;
+  display:flex;
+  animation: fade 0.4s ease-in;
+  justify-content: center;
+  gap: 20px;
+  border-radius: 30px;
+}
+.nav-container a {
+  text-decoration: none;
+}
+
+.title-container {
+  width: 360px;
+  height: 100px;
+  display:flex;
+  animation: fade 0.4s ease-in;
+  justify-content: center;
+  align-content: center;
+  gap: 20px;
+  background-image: linear-gradient(220deg, #f8f4ee, #f8f4ee);
+  box-shadow: 0 2px 2px 0 #00000033;
+  border-radius: 30px;
+}
+.title-container:hover {
+  background-image: linear-gradient(220deg, #f6e3c8, #f8f4ee);
+  box-shadow: 0 2px 9px 0 #00000033;
+}
+.icon-container {
+  height: 100px;
+  width: 100px;
+  background-image: linear-gradient(220deg, #f8f4ee, #f8f4ee);
+  border-radius: 30px;    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0 2px 2px 0 #00000033;
+}
+.icon-container:hover {
+  background-image: linear-gradient(220deg, #f6e3c8, #f8f4ee);
+  box-shadow: 0 2px 9px 0 #00000033;
+}
+.icon-description {
+  font-family: 'Dosis', sans-serif;
+  color:rgb(206, 153, 153)
+}
+.alotl {
+  opacity: 1;
+  text-align: center;
+ }
+.alotl a {
+  text-decoration: none;
+  color: #fb6376;
+  font-size: 50px;
+  font-family: 'Dosis', sans-serif;
+}
+.axolotl{
+  width:60px;
+}
+
+@keyframes fade {
+  0%{ opacity: 0; transform: translateY(-20px);}
+  80% { opacity: 0.8; transform: translateY(-5px); }
+  100% { opacity: 1; transform: translateY(0px); }
+}
+
+
+/* * * * * * * * * * * * *
+      Login/Register
+ * * * * * * * * * * * * */
+.usercred-box {
+  width: 230px;
+  margin: 100px auto;
+  padding: 20px 10px 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px 0 #00000033;
+  background: #f6e3c8;
+}
+
+.usercred-title {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.usercred-form {
+  margin: 7px;
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.usercred-form input {
+  height: 30px;
+  border-radius: 5px;
+  border-style: none;
+  padding: 3px 15px;
+}
+
+.usercred-form input[type=submit] {
+  width: 90px;
+  height: 30px;
+  margin-top: 5px;
+  margin-right: 0px;
+  align-self: center;
+  border: none;
+  border-radius: 5px;
+  background-color: #fb6376;
+  color: white;
+}
+
+.usercred-form input[type=submit]:hover,
+input[type=submit]:focus {
+  color: #ffd5d5;
+}
+
+.usercred-form input:hover,
+input:focus {
+  box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.1);
+  outline-width: 0;
+}
+
+
+
+/* * * * * * * * * * * * *
+    review-creator
+ * * * * * * * * * * * * */
+.review-creator-container{    
+  width: 230px;
+  background-color: #f8f4ee;
+  box-shadow: 0 2px 2px 0 #00000033;
+  height: 300px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  font-family: 'Dosis', sans-serif;
+}
+.review-creator{  
+  margin: auto;
+  width: 180px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-content: center;
+}

@@ -1,41 +1,54 @@
 const express = require('express');
 const path = require('path');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const userApiRouter = require('./userApi.js');
-const mediaApiRouter = require('./mediaApi.js');
-const signupApiRouter = require('./signupApi.js');
+const userApiRouter = require('./routers/userApi.js');
+const reviewApiRouter = require('./routers/reviewApi.js');
 
 const webpack = require('webpack');
 const config = require('../webpack.config');
 const compiler = webpack(config);
 
+/**
+* Automatically parse urlencoded body content and form data from incoming requests and place it
+* in req.body
+*/
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded());
+app.use(cookieParser());
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(path.resolve(__dirname, '../public')));
+app.use(express.static(path.resolve(__dirname, '../client')));
 
-// app.get('/client', (req, res) => {
-//   console.log('made get request');
-//   res.status(200).sendFile(path.resolve(__dirname, '../client/index.html'));
-// });
 
-app.use('/login', userApiRouter);
+//temp
+app.get('/usertable', (req, res) => {
+  let db = require('./models/model.js');
+  const query =
+      `SELECT * FROM "public"."public.User"`;
+  db.query(query)
+    .then(data => {
+      console.log(data.rows)
+      res.status(200).json(data.rows)
+    })
+  // return res.redirect('/');usert
+})
 
-app.use('/signup', signupApiRouter);
+app.use('/api/user', userApiRouter);
+app.use('/api/review', reviewApiRouter);
 
-app.use('/media', mediaApiRouter);
 
-app.get('/home', (req, res) => {
-  console.log('made get html request');
-  res.status(200).sendFile(path.resolve(__dirname, '../public/index.html'));
+//
+
+// app.use('/media', mediaApiRouter);
+
+app.use("*", (req, res) => {
+  console.log('react will handle it')
+  res.sendFile(path.join(__dirname, '../public/build/index.html'));
 });
 
-app.get('/bundle.js', (req, res) => {
-  console.log('made get bundle request');
-  res.status(200).sendFile(path.resolve(__dirname, '../public/bundle.js'));
-});
 
 app.use((err, req, res, next) => {
   const defaultErr = {
